@@ -8,7 +8,7 @@
 
 A standalone engine that renders any form from a JSON/TypeScript schema — no hardcoding, no repetitive form boilerplate. Pass in a schema, get a fully functional form with validation, conditional logic, computed fields, dependent dropdowns, draft saving, and API submission.
 
-Built as part of a Hospital Management System (United Medicity HIS), but designed to be domain-agnostic.
+Built as part of a Hospital Management System but designed to be domain-agnostic.
 
 ---
 
@@ -164,13 +164,36 @@ All engine logic (`conditionalEngine`, `validationEngine`, `schemaParser`, `form
 
 ---
 
-## Consumed by (in HMS context)
+## Microservice-Based Modular Architecture
 
-- `modules/opd` — patient registration, consultation forms
-- `modules/ipd` — admission, discharge, patient detail forms
-- `modules/hr` — employee CRUD, documents, salary assignment
-- `modules/hospital` — billing head, service master, company setup
-- `modules/dashboard` — filter panels
+The Dynamic Form Engine is designed for a microservice-based HMS ecosystem where each business domain is organized as an independent service with its own frontend module(s).
+
+### Microservices and modules
+
+- `reception-service` → `modules/reception` — patient registration, appointments, visitor management
+- `opd-service` → `modules/opd` — consultation forms, prescriptions, doctor workflow
+- `ipd-service` → `modules/ipd` — admission, discharge, bed allocation, inpatient workflow
+- `mediclaim-service` → `modules/mediclaim` — insurance, TPA approval, claim processing
+- `hospital-service` → `modules/hospital` — billing head, service master, hospital setup
+- `hr-service` → `modules/hr` — employee management, salary, onboarding
+- `lab-diagnostic-service` → `modules/lab-diagnostic` — pathology, radiology, diagnostics workflow
+- `pharmacy-store-service` → `modules/pharmacy-store` — medicine inventory and stock management
+- `blood-bank-service` → `modules/blood-bank` — donor and blood inventory management
+- `ambulance-service` → `modules/ambulance` — ambulance booking and trip management
+- `dashboard-service` → `modules/dashboard` — analytics, reports, dynamic filters
+- `admin-service` → `modules/admin` — RBAC, permissions, system configuration
+- `emr-ehr-service` → `modules/emr-ehr` — patient medical records and history
+- `notification-service` → `modules/notification` — SMS, email, WhatsApp workflows
+- `finance-service` → `modules/finance` — billing, payments, accounting workflows
+- `telemedicine-service` → `modules/telemedicine` — virtual consultation workflows
+
+### Architecture principles
+
+- Each service is a separate business domain.
+- Each service contains one or more frontend modules.
+- Shared form engine is reused across all modules.
+- Common hooks, validators, and utilities stay centralized.
+- The structure supports scalable enterprise healthcare applications.
 
 ---
 
