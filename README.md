@@ -181,12 +181,3 @@ All engine logic (`conditionalEngine`, `validationEngine`, `schemaParser`, `form
 - Hooks-based architecture (no Redux for form state)
 - REST API integration via Axios (through services layer)
 
----
-
-## Status
-
-Architecture published for reference. Source code is part of a private healthcare product (United Medicity HIS).
-
----
-
-*Built by Sandeep — part of United Medicity HIS frontend.*
